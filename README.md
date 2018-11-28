@@ -1,112 +1,8 @@
 # liri-node-app
  LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
-### Before You Begin
 
-1. LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for movies.
-
-2. Make a new GitHub repository called liri-node-app and clone it to your computer.
-
-3. To retrieve the data that will power this app, you'll need to send requests to the Bands in Town, Spotify and OMDB APIs. You'll find these Node packages crucial for your assignment.
-
-   * [Node-Spotify-API](https://www.npmjs.com/package/node-spotify-api)
-
-   * [Request](https://www.npmjs.com/package/request)
-
-     * You'll use Request to grab data from the [OMDB API](http://www.omdbapi.com) and the [Bands In Town API](http://www.artists.bandsintown.com/bandsintown-api)
-
-   * [Moment](https://www.npmjs.com/package/moment)
-
-   * [DotEnv](https://www.npmjs.com/package/dotenv)
-   
-## Submission Guide
-
-Make sure you use the normal GitHub. Because this is a CLI App, there will be no need to deploy it to Heroku. This time, though, you need to include screenshots, a gif, and/or a video showing us that you got the app working with no bugs. You can include these screenshots or a link to a video in a `README.md` file.
-
-* Include screenshots (or a video) of typical user flows through your application (for the customer and if relevant the manager/supervisor). This includes views of the prompts and the responses after their selection (for the different selection options).
-
-* Include any other screenshots you deem necessary to help someone who has never been introduced to your application understand the purpose and function of it. This is how you will communicate to potential employers/other developers in the future what you built and why, and to show how it works. 
-
-* Because screenshots (and well-written READMEs) are extremely important in the context of GitHub, this will be part of the grading.
-
-If you haven't written a markdown file yet, [click here for a rundown](https://guides.github.com/features/masteri
-ng-markdown/), or just take a look at the raw file of these instructions.
-
-### Submission on BCS
-
-* Please submit the link to the Github Repository!
-
-### Instructions
-
-1. Navigate to the root of your project and run `npm init -y` &mdash; this will initialize a `package.json` file for your project. The `package.json` file is required for installing third party npm packages and saving their version numbers. If you fail to initialize a `package.json` file, it will be troublesome, and at times almost impossible for anyone else to run your code after cloning your project.
-
-2. Make a `.gitignore` file and add the following lines to it. This will tell git not to track these files, and thus they won't be committed to Github.
-
-```
-node_modules
-.DS_Store
-.env
-```
-
-3. Make a JavaScript file named `keys.js`.
-
-* Inside keys.js your file will look like this:
-
-```js
-console.log('this is loaded');
-
-exports.spotify = {
-  id: process.env.SPOTIFY_ID,
-  secret: process.env.SPOTIFY_SECRET
-};
-```
-
-4. Next, create a file named `.env`, add the following to it, replacing the values with your API keys (no quotes) once you have them:
-
-```js
-# Spotify API keys
-
-SPOTIFY_ID=your-spotify-id
-SPOTIFY_SECRET=your-spotify-secret
-
-```
-
-* This file will be used by the `dotenv` package to set what are known as environment variables to the global `process.env` object in node. These are values that are meant to be specific to the computer that node is running on, and since we are gitignoring this file, they won't be pushed to github &mdash; keeping our API key information private.
-
-* If someone wanted to clone your app from github and run it themselves, they would need to supply their own `.env` file for it to work.
-
-5. Make a file called `random.txt`.
-
-   * Inside of `random.txt` put the following in with no extra characters or white space:
-
-     * spotify-this-song,"I Want it That Way"
-
-6. Make a JavaScript file named `liri.js`.
-
-7. 
-At the top of the `liri.js` file, add code to read and set any environment variables with the dotenv package:
-
-```js
-require("dotenv").config();
-```
-
-8. Add the code required to import the `keys.js` file and store it in a variable.
-  
-* You should then be able to access your keys information like so
-
-  ```js
-  var spotify = new Spotify(keys.spotify);
-  ```
-
-9. Make it so liri.js can take in one of the following commands:
-
-   * `concert-this`
-
-   * `spotify-this-song`
-
-   * `movie-this`
-
-   * `do-what-it-says`
+ LIRI will search Spotify for songs, Bands in Town for concerts, and OMDB for movies.
 
 ### What Each Command Should Do
 
@@ -134,18 +30,7 @@ require("dotenv").config();
 
    * If no song is provided then your program will default to "The Sign" by Ace of Base.
 
-   * You will utilize the [node-spotify-api](https://www.npmjs.com/package/node-spotify-api) package in order to retrieve song information from the Spotify API.
-
-   * The Spotify API requires you sign up as a developer to generate the necessary credentials. You can follow these steps in order to generate a **client id** and **client secret**:
-
-   * Step One: Visit <https://developer.spotify.com/my-applications/#!/>
-
-   * Step Two: Either login to your existing Spotify account or create a new one (a free account is fine) and log in.
-
-   * Step Three: Once logged in, navigate to <https://developer.spotify.com/my-applications/#!/applications/create> to register a new application to be used with the Spotify API. You can fill in whatever you'd like for these fields. When finished, click the "complete" button.
-
-   * Step Four: On the next screen, scroll down to where you see your client id and client secret. Copy these values down somewhere, you'll need them to use the Spotify API and the [node-spotify-api package](https://www.npmjs.com/package/node-spotify-api).
-
+   
 3. `node liri.js movie-this '<movie name here>'`
 
    * This will output the following information to your terminal/bash window:
@@ -177,42 +62,123 @@ require("dotenv").config();
 
      * Edit the text in random.txt to test out the feature for movie-this and concert-this.
 
-### BONUS
 
-* In addition to logging the data to your terminal/bash window, output the data to a .txt file called `log.txt`.
+SCREENSHOTS:
 
-* Make sure you append each command you run to the `log.txt` file. 
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js movie-this scarface
+this is loaded
+Title:  Scarface
+Date Released:  09 Dec 1983
+IMDB Rating:  8.3
+Rotten Tomatoes Rating:  82%
+Produced in :  USA
+Languaged in :  English, Spanish
+Plot Synopsis :  In Miami in 1980, a determined Cuban immigrant takes over a dru
+g cartel and succumbs to greed.
+Starring :  Al Pacino, Steven Bauer, Michelle Pfeiffer, Mary Elizabeth Mastranto
+nio
 
-* Do not overwrite your file each time you run a command.
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js spotify-this-song beat it
+this is loaded
+Artist:  Michael Jackson
+Song Name:  Beat It - Single Version
+Album Title:  Thriller 25 Super Deluxe Edition
+Preview Link:  https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm
 
-### Reminder: Submission on BCS
+Artist:  The Beatles
+Song Name:  Let It Be - Remastered 2009
+Album Title:  Let It Be (Remastered)
+Preview Link:  https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2
 
-* Please submit the link to the Github Repository!
+Artist:  Michael Jackson
+Song Name:  Beat It - Single Version
+Album Title:  Michael Jackson's This Is It
+Preview Link:  https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm
 
-- - -
 
-### Minimum Requirements
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js spotify-this-song 'beat it'
+this is loaded
+Artist:  Michael Jackson
+Song Name:  Beat It - Single Version
+Album Title:  Thriller 25 Super Deluxe Edition
+Preview Link:  https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm
 
-Attempt to complete homework assignment as described in instructions. If unable to complete certain portions, please pseudocode these portions to describe what remains to be completed. Adding a README.md as well as adding this homework to your portfolio are required as well and more information can be found below.
+Artist:  The Beatles
+Song Name:  Let It Be - Remastered 2009
+Album Title:  Let It Be (Remastered)
+Preview Link:  https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2
 
-- - -
+Artist:  Michael Jackson
+Song Name:  Beat It - Single Version
+Album Title:  Michael Jackson's This Is It
+Preview Link:  https://open.spotify.com/artist/3fMbdgg4jU18AjLCKBhRSm
 
-### Create a README.md
 
-Add a `README.md` to your repository describing the project. Here are some resources for creating your `README.md`. Here are some resources to help you along the way:
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js concert-this u2
+this is loaded
 
-* [About READMEs](https://help.github.com/articles/about-readmes/)
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js concert-this beyonce
+this is loaded
 
-* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+Belen@Jaime_PC MINGW64 ~/desktop/liri-node-app (master)
+$ node liri.js concert-this rolling stones
+this is loaded
+Venue:  Hard Rock Stadium
+Location:  Miami Gardens ,  United States
+Date (MM-DD-YYYY):  3 - 20 - 2019
 
-- - -
+Venue:  TIAA Bank Field
+Location:  Jacksonville ,  United States
+Date (MM-DD-YYYY):  3 - 24 - 2019
 
-### Add To Your Portfolio
+Venue:  NRG Arena
+Location:  Houston ,  United States
+Date (MM-DD-YYYY):  3 - 28 - 2019
 
-After completing the homework please add the piece to your portfolio. Make sure to add a link to your updated portfolio in the comments section of your homework so the TAs can easily ensure you completed this step when they are grading the assignment. To receive an 'A' on any assignment, you must link to it from your portfolio.
+Venue:  State Farm Stadium (formerly University of Phoenix Stadium)
+Location:  Glendale ,  United States
+Date (MM-DD-YYYY):  4 - 7 - 2019
 
-- - -
+Venue:  Rose Bowl Stadium
+Location:  Pasadena ,  United States
+Date (MM-DD-YYYY):  4 - 11 - 2019
 
-### One More Thing
+Venue:  Levi's Stadium
+Location:  Santa Clara ,  United States
+Date (MM-DD-YYYY):  4 - 18 - 2019
 
-If you have any questions about this project or the material we have covered, please post them in the community channels in slack so that your fellow developers can help you! If you're still having trouble, you can come to office hours for assistance from your instructor and TAs.
+Venue:  CenturyLink Field
+Location:  Seattle ,  United States
+Date (MM-DD-YYYY):  4 - 22 - 2019
+
+Venue:  Broncos Stadium at Mile High
+Location:  Denver ,  United States
+Date (MM-DD-YYYY):  4 - 26 - 2019
+
+Venue:  FedEx Field
+Location:  Landover ,  United States
+Date (MM-DD-YYYY):  4 - 31 - 2019
+
+Venue:  Lincoln Financial Field
+Location:  Philadelphia ,  United States
+Date (MM-DD-YYYY):  5 - 4 - 2019
+
+Venue:  Gillette Stadium
+Location:  Foxborough ,  United States
+Date (MM-DD-YYYY):  5 - 8 - 2019
+
+Venue:  MetLife Stadium
+Location:  East Rutherford ,  United States
+Date (MM-DD-YYYY):  5 - 13 - 2019
+
+Venue:  Soldier Field
+Location:  Chicago ,  United States
+Date (MM-DD-YYYY):  5 - 21 - 2019
+
+
+ https://jaime-fajardo.github.io/liri-node-app/
